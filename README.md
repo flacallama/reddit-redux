@@ -19,7 +19,7 @@ The jsx in the `App` component MUST BE separated into **at least** the following
   * PostInput
   * Post
   * Comment
-**HINT** You may find that adding components in addition to those may help you organize your code a little. It's not required, by any means, though.
+  * **HINT** You may find that adding components in addition to those may help you organize your code a little. It's not required, by any means, though.
 
 ## User Stories
 
