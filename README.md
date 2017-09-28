@@ -6,6 +6,12 @@ git clone https://github.com/gSchool/g58-reddit-clone-redux.git
 cd g58-reddit-clone-redux
 npm install OR yarn
 npm start OR yarn start
+
+THEN (to set up the server):
+sh setup.sh
+
+THEN: (to run the server):
+sh run-server.sh
 ```
 
 ## Requirements
