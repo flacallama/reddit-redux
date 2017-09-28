@@ -7,6 +7,14 @@ cd g58-reddit-clone-redux
 npm install OR yarn
 npm start OR yarn start
 ```
+
+## Requirements
+The jsx in the `App` component MUST BE separated into **at least** the following components:
+  * PostInput
+  * Post
+  * Comment
+**HINT** You may find that adding components in addition to those may help you organize your code a little. It's not required, by any means, though.
+
 ## User Stories
 
 Feel free to Style / theme / rename the app to make it something you might put on your portfolio AFTER you finish the functionality.
