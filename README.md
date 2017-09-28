@@ -2,14 +2,14 @@
 
 ## Getting Started:
 ```
-git clone https://github.com/gSchool/g54-reddit-clone-redux.git
-cd g54-reddit-clone-redux
+git clone https://github.com/gSchool/g58-reddit-clone-redux.git
+cd g58-reddit-clone-redux
 npm install OR yarn
 npm start OR yarn start
 ```
 ## User Stories
 
-Feel free to Style / theme / rename the app to make it something you might put on your portfolio.
+Feel free to Style / theme / rename the app to make it something you might put on your portfolio AFTER you finish the functionality.
 
 **Users can create a post**
 
