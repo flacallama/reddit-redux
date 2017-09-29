@@ -1,10 +1,27 @@
 import React, { Component } from 'react';
 import Comment from './comment';
-
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import * as commentActions from '../actions/comments'
+import Moment from 'react-moment';
 
 class Post extends Component {
+
+  componentWillMount(){
+    this.props.actions.getComments()
+  }
+
   render () {
-    let post = this.props.post
+
+  let post = this.props.post
+
+  let matchingComments = this.props.comments.filter(comment => {
+      if (comment.post_id === post.id){
+        return comment
+      }
+    })
+
+
     return (
 
       <div className="row">
@@ -20,7 +37,7 @@ class Post extends Component {
                 |
                 <a><i className="glyphicon glyphicon-arrow-up"></i></a>
                 <a><i className="glyphicon glyphicon-arrow-down"></i></a>
-                10
+                {post.votes}
               </h4>
               <div className="text-right">
                 {post.author}
@@ -29,26 +46,16 @@ class Post extends Component {
                 {post.content}
               </p>
               <div>
-                {post.created_at}
+                <Moment fromNow>{post.created_at}</Moment>
               |
-
-
-
-
-
-
-
-                <i className="glyphicon glyphicon-comment"></i>
-                <a>
-                  Some comments
-                </a>
               </div>
-              <div className="row">
-                <div className="col-md-offset-1">
-                  <hr />
-                  <Comment />
-                </div>
+              <div>
+              <i className="glyphicon glyphicon-comment"></i>
+               <a>
+                 {matchingComments.length}
+               </a>
               </div>
+              <Comment matchingComments={matchingComments}/>
             </div>
           </div>
         </div>
@@ -57,6 +64,18 @@ class Post extends Component {
   }
 }
 
+function mapStateToProps(state, props){
+  return {
+    comments: state.comments
+  }
+}
 
+function matchDispatchToProps(dispatch)
+{
+  return {
+    actions: bindActionCreators(commentActions, dispatch)
+  }
 
-export default Post;
+}
+
+export default connect(mapStateToProps, matchDispatchToProps)(Post)

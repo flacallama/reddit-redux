@@ -1,46 +1,64 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
-import * as commentActions from '../actions/comments'
+import { Field, reduxForm } from 'redux-form';
 
 
 class Comment extends Component {
 
-  componentWillMount(){
-    this.props.actions.getComments()
+  addNewPost = (val) => {
+    console.log(val)
   }
+
   render () {
-    console.log('props from comment', this.props.comments)
+    let {handleSubmit} = this.props
+
     return (
-      <div>
-        <p>
-          Comment text
-        </p>
-        <form className="form-inline">
-          <div className="form-group">
-            <input className="form-control" />
+      <div >
+        <div >
+          <div className="row">
+            <div className="col-md-offset-1">
+              <hr />
+              <p>
+                <ul>
+                  {this.props.matchingComments.map(comment => {
+                    return (
+                      <li>{comment.content}</li>
+                    )})}
+
+                </ul>
+              </p>
+
+
+              <form onSubmit={ handleSubmit(this.addNewPost) } className='form-inline'>
+                <div>
+                  <label htmlFor="title">Title</label>
+                  <Field className="form-control" name="title" component="input" type="text" />
+                </div>
+              </form>
+
+
+
+
+
+              <form className="form-inline">
+                <div className="form-group">
+                  <input className="form-control" />
+                </div>
+                <div className="form-group">
+                  <input type="submit" className="btn btn-primary" />
+                </div>
+              </form>
+            </div>
           </div>
-          <div className="form-group">
-            <input type="submit" className="btn btn-primary" />
-          </div>
-        </form>
+        </div>
       </div>
     )
+
   }
 }
 
-function mapStateToProps(state, props){
-  return {
-    comments: state.comments
-  }
-}
+Comment = reduxForm({
+  // a unique name for the form
+  form: 'postInput'
+})(Comment)
 
-function matchDispatchToProps(dispatch)
-{
-  return {
-    actions: bindActionCreators(commentActions, dispatch)
-  }
-
-}
-
-export default connect(mapStateToProps, matchDispatchToProps)(Comment)
+export default Comment
