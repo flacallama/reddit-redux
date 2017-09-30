@@ -4,8 +4,8 @@ import { Field, reduxForm } from 'redux-form';
 
 class Comment extends Component {
 
-  addNewPost = (val) => {
-    console.log(val)
+  addComment = (val) => {
+    console.log("val", val)
   }
 
   render () {
@@ -27,7 +27,7 @@ class Comment extends Component {
                 </ul>
               </p>
 
-
+{/*
               <form onSubmit={ handleSubmit(this.addNewPost) } className='form-inline'>
                 <div>
                   <label htmlFor="title">Title</label>
@@ -35,13 +35,13 @@ class Comment extends Component {
                 </div>
               </form>
 
+*/}
 
 
 
-
-              <form className="form-inline">
+              <form className="form-inline" onSubmit={e => this.addComment(e.target.comment.value)}>
                 <div className="form-group">
-                  <input className="form-control" />
+                  <input className="form-control" name="comment"/>
                 </div>
                 <div className="form-group">
                   <input type="submit" className="btn btn-primary" />
