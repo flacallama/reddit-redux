@@ -15,11 +15,7 @@ class Post extends Component {
 
   let post = this.props.post
 
-  let matchingComments = this.props.comments.filter(comment => {
-      if (comment.post_id === post.id){
-        return comment
-      }
-    })
+  let matchingComments = this.props.comments.filter (comment => comment.post_id === post.id ? comment : '')
 
 
     return (

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import './App.css';
+import { connect } from 'react-redux';
 import TopNav from './components/TopNav';
 import PostInput from './components/postInput';
 import Posts from './components/posts';
@@ -18,7 +19,11 @@ class App extends Component {
 
           <Filter />
 
-          <PostInput />
+
+          <div>
+            { console.log('togglehit')}
+              {(this.props.togglePostInput === true ) ? <PostInput /> : '' }
+          </div>
           <Posts />
 
         </main>
@@ -27,7 +32,11 @@ class App extends Component {
   }
 }
 
+let mapStateToProps = (state, props) => {
+  return {
+    togglePostInput: state.togglePostInput
+  }
+}
 
 
-
-export default App;
+export default connect(mapStateToProps, null)(App);
