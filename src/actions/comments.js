@@ -8,9 +8,13 @@ export const getComments = (comments) => {
   }
 }
 
-// export const addComment = (content, postId) => {
-//   return {
-//     type: 'ADD_COMMENT',
-//     payload: axios.post(`http://localhost:9001/comments/${postId}`, content)
-//   }
-// }
+export const addNewComment = (postId, comment) => {
+  return {
+    type: 'ADD_COMMENT',
+    payload: axios.post(`http://localhost:9001/comments/${postId}`,
+      {
+        content: comment
+      }
+    )
+  }
+}

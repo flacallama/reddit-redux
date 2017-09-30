@@ -55,7 +55,10 @@ class Post extends Component {
                  {matchingComments.length}
                </a>
               </div>
-              <Comment matchingComments={matchingComments}/>
+              <Comment
+                postId={post.id}
+                matchingComments={matchingComments}
+              />
             </div>
           </div>
         </div>

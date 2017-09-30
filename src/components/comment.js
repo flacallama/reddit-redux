@@ -1,15 +1,11 @@
 import React, { Component } from 'react';
-import { Field, reduxForm } from 'redux-form';
-
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
+import { addNewComment } from '../actions/comments'
 
 class Comment extends Component {
 
-  addComment = (val) => {
-    console.log("val", val)
-  }
-
   render () {
-    let {handleSubmit} = this.props
 
     return (
       <div >
@@ -27,19 +23,17 @@ class Comment extends Component {
                 </ul>
               </p>
 
-{/*
-              <form onSubmit={ handleSubmit(this.addNewPost) } className='form-inline'>
-                <div>
-                  <label htmlFor="title">Title</label>
-                  <Field className="form-control" name="title" component="input" type="text" />
-                </div>
-              </form>
-
-*/}
 
 
-
-              <form className="form-inline" onSubmit={e => this.addComment(e.target.comment.value)}>
+              <form
+                className="form-inline"
+                onSubmit={e => { this.props.addNewComment(
+                  this.props.postId, e.target.comment.value
+                )
+                e.preventDefault();
+                e.target.reset();
+              }}
+              >
                 <div className="form-group">
                   <input className="form-control" name="comment"/>
                 </div>
@@ -56,9 +50,10 @@ class Comment extends Component {
   }
 }
 
-Comment = reduxForm({
-  // a unique name for the form
-  form: 'postInput'
-})(Comment)
+function mapDispatchToProps(dispatch) {
+  return {
+    addNewComment: bindActionCreators(addNewComment, dispatch)
+  }
+}
 
-export default Comment
+export default connect(null, mapDispatchToProps)(Comment);
